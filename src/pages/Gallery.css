@@ -1,0 +1,103 @@
+.gallery-page { padding-top: var(--navbar-height); }
+
+.gallery-hero {
+  text-align: center;
+  padding: var(--space-16) 0 var(--space-10);
+  background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-parchment) 100%);
+}
+
+.gallery-hero h1 {
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-2);
+}
+
+.gallery-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-10);
+}
+
+.gallery-filter-btn {
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  color: var(--color-walnut);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  border: 2px solid var(--color-cream-dark);
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.gallery-filter-btn:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+.gallery-filter-btn--active {
+  background: var(--color-walnut);
+  color: var(--color-white);
+  border-color: var(--color-walnut);
+}
+
+.gallery-filter-btn--active:hover {
+  color: var(--color-white);
+}
+
+.gallery-filter-count {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  font-size: var(--text-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-filter-btn--active .gallery-filter-count {
+  background: rgba(255,255,255,0.25);
+}
+
+.gallery-masonry {
+  columns: 3;
+  column-gap: var(--space-6);
+}
+
+.gallery-empty {
+  text-align: center;
+  padding: var(--space-16);
+  color: var(--color-text-light);
+}
+
+@media (max-width: 1024px) {
+  .gallery-masonry { columns: 2; }
+}
+
+@media (max-width: 768px) {
+  .gallery-hero { padding: var(--space-12) 0 var(--space-8); }
+  .gallery-filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: var(--space-2);
+    padding: 0 var(--space-4) var(--space-3);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .gallery-filters::-webkit-scrollbar { display: none; }
+  .gallery-filter-btn { flex-shrink: 0; }
+}
+
+@media (max-width: 640px) {
+  .gallery-masonry { columns: 2; column-gap: var(--space-3); }
+  .gallery-filter-btn { padding: var(--space-2) var(--space-3); font-size: var(--text-xs); }
+}
+
+@media (max-width: 400px) {
+  .gallery-masonry { columns: 1; }
+}

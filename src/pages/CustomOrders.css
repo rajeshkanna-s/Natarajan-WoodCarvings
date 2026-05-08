@@ -1,0 +1,166 @@
+.custom-page { padding-top: var(--navbar-height); }
+
+.custom-hero {
+  text-align: center;
+  padding: var(--space-16) 0 var(--space-10);
+  background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-parchment) 100%);
+}
+.custom-hero h1 { margin-top: var(--space-4); margin-bottom: var(--space-2); }
+
+.custom-form-wrap {
+  max-width: 750px;
+  margin: 0 auto;
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Step Indicator */
+.custom-steps-indicator {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-10);
+  position: relative;
+}
+
+.custom-step-dot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  z-index: 2;
+}
+
+.custom-step-dot span {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  color: var(--color-text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  transition: all var(--transition-base);
+  border: 2px solid var(--color-cream-dark);
+}
+
+.custom-step-dot--active span {
+  background: var(--color-walnut);
+  color: var(--color-white);
+  border-color: var(--color-walnut);
+}
+
+.custom-step-dot small {
+  font-size: var(--text-xs);
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.custom-steps-line {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  right: 40px;
+  height: 3px;
+  background: var(--color-cream-dark);
+  z-index: 1;
+}
+
+.custom-steps-line-fill {
+  height: 100%;
+  background: var(--color-walnut);
+  transition: width var(--transition-base);
+  border-radius: 2px;
+}
+
+/* Form Step */
+.custom-form-step h3 {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-3);
+  border-bottom: 2px solid var(--color-cream);
+}
+
+.custom-option-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.custom-option {
+  padding: var(--space-2) var(--space-4);
+  border: 2px solid var(--color-cream-dark);
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.custom-option:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+.custom-option--selected {
+  background: var(--color-walnut);
+  color: var(--color-white);
+  border-color: var(--color-walnut);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+/* Summary */
+.custom-summary {
+  background: var(--color-cream);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  margin: var(--space-6) 0;
+}
+
+.custom-summary h4 { margin-bottom: var(--space-4); }
+
+.custom-summary-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.custom-summary-grid span { color: var(--color-text-light); }
+
+/* Nav */
+.custom-form-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-cream);
+}
+
+@media (max-width: 768px) {
+  .custom-form-wrap { padding: var(--space-6); }
+  .form-row { grid-template-columns: 1fr; }
+  .custom-hero { padding: var(--space-12) 0 var(--space-8); }
+}
+
+@media (max-width: 480px) {
+  .custom-form-wrap { padding: var(--space-4); }
+  .custom-option { font-size: var(--text-xs); padding: var(--space-2) var(--space-3); }
+  .custom-step-dot span { width: 32px; height: 32px; font-size: var(--text-xs); }
+  .custom-step-dot small { font-size: 0.6rem; }
+  .custom-steps-line { top: 16px; left: 24px; right: 24px; }
+  .custom-steps-indicator { margin-bottom: var(--space-6); }
+  .custom-form-nav { flex-direction: column; gap: var(--space-3); }
+  .custom-form-nav .btn { width: 100%; }
+}

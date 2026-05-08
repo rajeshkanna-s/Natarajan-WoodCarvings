@@ -1,0 +1,151 @@
+.craft-page { padding-top: var(--navbar-height); }
+
+.craft-hero {
+  text-align: center;
+  padding: var(--space-16) 0 var(--space-10);
+  background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-parchment) 100%);
+}
+.craft-hero h1 { margin-top: var(--space-4); margin-bottom: var(--space-2); }
+
+/* Steps */
+.craft-steps {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.craft-step {
+  display: grid;
+  grid-template-columns: 100px 1fr 250px;
+  gap: var(--space-6);
+  margin-bottom: var(--space-10);
+  align-items: start;
+}
+
+.craft-step:nth-child(even) {
+  direction: rtl;
+}
+
+.craft-step:nth-child(even) > * {
+  direction: ltr;
+}
+
+.craft-step__visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.craft-step__num {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--color-gold);
+  margin-bottom: var(--space-2);
+}
+
+.craft-step__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-walnut), var(--color-walnut-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  box-shadow: var(--shadow-md);
+}
+
+.craft-step__line {
+  width: 3px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--color-gold), transparent);
+  margin-top: var(--space-3);
+}
+
+.craft-step__content h3 {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-3);
+}
+
+.craft-step__content p {
+  color: var(--color-text-light);
+  line-height: 1.8;
+}
+
+.craft-step__img-wrap {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  aspect-ratio: 4/3;
+}
+
+.craft-step__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Wood Types */
+.craft-woods-section { background: var(--color-cream); }
+
+.craft-woods-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+}
+
+.craft-wood-card {
+  background: var(--color-white);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: all var(--transition-base);
+}
+
+.craft-wood-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.craft-wood-swatch {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 0 auto var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.craft-wood-card h4 { margin-bottom: var(--space-2); }
+.craft-wood-card p { font-size: var(--text-sm); color: var(--color-text-light); margin: 0; line-height: 1.6; }
+
+/* Video */
+.craft-video-wrap {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+.craft-video {
+  width: 100%;
+  display: block;
+}
+
+/* CTA */
+.craft-cta-section { background: var(--color-cream); }
+
+@media (max-width: 768px) {
+  .craft-step {
+    grid-template-columns: 60px 1fr;
+    direction: ltr !important;
+  }
+  .craft-step__img-wrap { display: none; }
+  .craft-woods-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .craft-woods-grid { grid-template-columns: 1fr; }
+}
