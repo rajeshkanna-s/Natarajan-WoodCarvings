@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
@@ -49,7 +49,8 @@ export default function App() {
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/products" element={<Gallery />} />
+            <Route path="/gallery" element={<Navigate to="/products" replace />} />
             <Route path="/about" element={<About />} />
             <Route path="/craftsmanship" element={<Craftsmanship />} />
             <Route path="/custom-orders" element={<CustomOrders />} />

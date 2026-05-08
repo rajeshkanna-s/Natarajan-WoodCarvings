@@ -25,8 +25,8 @@ export default function Gallery() {
     <div className="gallery-page" id="gallery-page">
       <section className="gallery-hero">
         <div className="container">
-          <span className="badge badge-gold">🪵 Our Collection</span>
-          <h1>Product Gallery</h1>
+          <span className="badge badge-gold">🪵 Our Products</span>
+          <h1>Products</h1>
           <p className="section-subtitle">
             Explore our handcrafted masterpieces — from divine deity statues to contemporary wall art.
             Each piece is unique, carved with devotion and decades of expertise.

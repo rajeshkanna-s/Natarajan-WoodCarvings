@@ -36,7 +36,7 @@ export default function Home() {
             Kallakurichi, Tamil Nadu. Each piece tells a story spanning the Chola dynasty to the present.
           </p>
           <div className="hero__cta">
-            <Link to="/gallery" className="btn btn-gold btn-lg">Explore Gallery</Link>
+            <Link to="/products" className="btn btn-gold btn-lg">Explore Products</Link>
             <Link to="/custom-orders" className="btn btn-outline btn-lg" style={{ borderColor: '#fff', color: '#fff' }}>Custom Orders</Link>
           </div>
           <div className="hero__scroll-cta" onClick={() => document.getElementById('stats-section')?.scrollIntoView({ behavior: 'smooth' })}>
@@ -68,11 +68,11 @@ export default function Home() {
           </div>
           <div className="featured-grid">
             {featuredProducts.map((product) => (
-              <Link to="/gallery" key={product.id} className="featured-card">
+              <Link to="/products" key={product.id} className="featured-card">
                 <div className="featured-card__img-wrap">
                   <img src={product.image} alt={product.name} loading="lazy" />
                   <div className="featured-card__overlay">
-                    <span>View in Gallery →</span>
+                    <span>View Product →</span>
                   </div>
                 </div>
                 <h4 className="featured-card__name">{product.name}</h4>
@@ -81,7 +81,7 @@ export default function Home() {
             ))}
           </div>
           <div style={{ textAlign: 'center', marginTop: 'var(--space-10)' }}>
-            <Link to="/gallery" className="btn btn-primary btn-lg">View Full Gallery →</Link>
+            <Link to="/products" className="btn btn-primary btn-lg">View All Products →</Link>
           </div>
         </div>
       </section>

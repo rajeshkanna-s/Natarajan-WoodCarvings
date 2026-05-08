@@ -26,7 +26,7 @@ export default function Footer() {
           <div className="footer__nav">
             <h4 className="footer__heading">Quick Links</h4>
             <ul>
-              <li><Link to="/gallery">Product Gallery</Link></li>
+              <li><Link to="/products">Products</Link></li>
               <li><Link to="/about">Our Story</Link></li>
               <li><Link to="/craftsmanship">Craftsmanship</Link></li>
               <li><Link to="/custom-orders">Custom Orders</Link></li>
@@ -37,9 +37,9 @@ export default function Footer() {
           <div className="footer__nav">
             <h4 className="footer__heading">Categories</h4>
             <ul>
-              <li><Link to="/gallery">Deity Statues</Link></li>
-              <li><Link to="/gallery">Wall Mounts</Link></li>
-              <li><Link to="/gallery">Custom Orders</Link></li>
+              <li><Link to="/products">Deity Statues</Link></li>
+              <li><Link to="/products">Wall Mounts</Link></li>
+              <li><Link to="/products">Custom Orders</Link></li>
             </ul>
           </div>
           <div className="footer__contact">
