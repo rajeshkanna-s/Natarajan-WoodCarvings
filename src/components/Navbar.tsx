@@ -15,14 +15,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     setIsOpen(false);
@@ -34,10 +27,8 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
-  const isHome = location.pathname === '/';
-
   return (
-    <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${isHome && !scrolled ? 'navbar--hero' : ''}`} id="main-navbar">
+    <nav className="navbar" id="main-navbar">
       {isOpen && <div className="navbar__overlay" onClick={() => setIsOpen(false)}></div>}
       <div className="navbar__inner container">
         <Link to="/" className="navbar__logo" id="navbar-logo">

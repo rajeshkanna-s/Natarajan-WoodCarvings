@@ -5,7 +5,7 @@ import './Home.css';
 
 const stats = [
   { value: 40, suffix: '+', label: 'Years of Heritage', icon: '🏛️' },
-  { value: 1000, suffix: '+', label: 'Statues Crafted', icon: '🪵' },
+  { value: 5000, suffix: '+', label: 'Statues Crafted', icon: '🪵' },
   { value: 6400, suffix: '+', label: 'Instagram Followers', icon: '📸' },
   { value: 50, suffix: '+', label: 'Countries Shipped', icon: '🌍' },
 ];
@@ -37,7 +37,7 @@ export default function Home() {
           </p>
           <div className="hero__cta">
             <Link to="/gallery" className="btn btn-gold btn-lg">Explore Gallery</Link>
-            <Link to="/custom-orders" className="btn btn-outline btn-lg" style={{borderColor: '#fff', color:'#fff'}}>Custom Orders</Link>
+            <Link to="/custom-orders" className="btn btn-outline btn-lg" style={{ borderColor: '#fff', color: '#fff' }}>Custom Orders</Link>
           </div>
           <div className="hero__scroll-cta" onClick={() => document.getElementById('stats-section')?.scrollIntoView({ behavior: 'smooth' })}>
             <span>Scroll to explore</span>
