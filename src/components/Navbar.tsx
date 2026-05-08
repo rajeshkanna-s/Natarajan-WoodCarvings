@@ -10,6 +10,7 @@ const navLinks = [
   { path: '/custom-orders', label: 'Custom Orders' },
   { path: '/shipping', label: 'Shipping' },
   { path: '/testimonials', label: 'Testimonials' },
+  { path: '/instagram', label: 'Instagram' },
   { path: '/contact', label: 'Contact' },
 ];
 

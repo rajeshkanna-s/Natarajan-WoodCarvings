@@ -13,6 +13,7 @@ const CustomOrders = lazy(() => import('./pages/CustomOrders'));
 const Shipping = lazy(() => import('./pages/Shipping'));
 const Testimonials = lazy(() => import('./pages/Testimonials'));
 const Contact = lazy(() => import('./pages/Contact'));
+const Instagram = lazy(() => import('./pages/Instagram'));
 
 function Loading() {
   return (
@@ -56,6 +57,7 @@ export default function App() {
             <Route path="/custom-orders" element={<CustomOrders />} />
             <Route path="/shipping" element={<Shipping />} />
             <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/instagram" element={<Instagram />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </Suspense>
