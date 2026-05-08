@@ -6,15 +6,104 @@ const woodOptions = ['Teak Wood', 'Rosewood', 'Vaagai Wood', 'Sandalwood', 'Not 
 const finishOptions = ['Natural Polish', 'Painted (Traditional)', 'Gold Leaf Accent', 'Antique Finish', 'Raw/Unfinished'];
 const budgetRanges = ['₹5,000 – ₹15,000', '₹15,000 – ₹50,000', '₹50,000 – ₹1,00,000', '₹1,00,000 – ₹5,00,000', '₹5,00,000+', 'Need Quote First'];
 
+type FormState = {
+  statueType: string;
+  deityName: string;
+  woodType: string;
+  finish: string;
+  height: string;
+  width: string;
+  budget: string;
+  name: string;
+  phone: string;
+  email: string;
+  notes: string;
+};
+
+type FormField = keyof FormState;
+type FormErrors = Partial<Record<FormField, string>>;
+
+const initialForm: FormState = {
+  statueType: '',
+  deityName: '',
+  woodType: '',
+  finish: '',
+  height: '',
+  width: '',
+  budget: '',
+  name: '',
+  phone: '',
+  email: '',
+  notes: '',
+};
+
+const mandatoryMessage = 'This field is mandatory to fill.';
+const namePattern = /^[A-Za-z\s]+$/;
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export default function CustomOrders() {
   const [step, setStep] = useState(1);
-  const [form, setForm] = useState({
-    statueType: '', deityName: '', woodType: '', finish: '',
-    height: '', width: '', budget: '',
-    name: '', phone: '', email: '', notes: '',
+  const [form, setForm] = useState<FormState>(initialForm);
+  const [errors, setErrors] = useState<FormErrors>({});
+
+  const update = (field: FormField, value: string) => {
+    const nextValue = field === 'phone' ? value.replace(/\D/g, '').slice(0, 10) : value;
+
+    setForm(prev => ({ ...prev, [field]: nextValue }));
+    setErrors(prev => {
+      if (!prev[field]) return prev;
+      const next = { ...prev };
+      delete next[field];
+      return next;
+    });
+  };
+
+  const applyErrors = (nextErrors: FormErrors) => {
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  };
+
+  const validateDesignStep = () => applyErrors({
+    ...(form.statueType ? {} : { statueType: mandatoryMessage }),
   });
 
-  const update = (field: string, value: string) => setForm(prev => ({ ...prev, [field]: value }));
+  const validateSpecificationsStep = () => applyErrors({
+    ...(form.woodType ? {} : { woodType: mandatoryMessage }),
+    ...(form.finish ? {} : { finish: mandatoryMessage }),
+    ...(form.budget ? {} : { budget: mandatoryMessage }),
+  });
+
+  const validateContactStep = () => {
+    const nextErrors: FormErrors = {};
+    const name = form.name.trim();
+    const email = form.email.trim();
+
+    if (!name) {
+      nextErrors.name = mandatoryMessage;
+    } else if (!namePattern.test(name)) {
+      nextErrors.name = 'Name should contain only letters.';
+    }
+
+    if (!form.phone) {
+      nextErrors.phone = mandatoryMessage;
+    } else if (!/^\d{10}$/.test(form.phone)) {
+      nextErrors.phone = 'Enter a valid 10-digit mobile number.';
+    }
+
+    if (email && !emailPattern.test(email)) {
+      nextErrors.email = 'Enter a valid email address with @ and .';
+    }
+
+    return applyErrors(nextErrors);
+  };
+
+  const handleDesignNext = () => {
+    if (validateDesignStep()) setStep(2);
+  };
+
+  const handleSpecificationsNext = () => {
+    if (validateSpecificationsStep()) setStep(3);
+  };
 
   const generateWhatsAppMsg = () => {
     return `Hello Natarajan WoodCarvings! I'd like to place a custom order:\n\n` +
@@ -33,6 +122,8 @@ export default function CustomOrders() {
   };
 
   const handleSubmit = () => {
+    if (!validateContactStep()) return;
+
     const msg = generateWhatsAppMsg();
     window.open(`https://wa.me/919092342219?text=${encodeURIComponent(msg)}`, '_blank');
   };
@@ -72,11 +163,12 @@ export default function CustomOrders() {
                 <h3>Step 1: What would you like?</h3>
                 <div className="form-group">
                   <label className="form-label">Statue Type *</label>
-                  <div className="custom-option-grid">
+                  <div className={`custom-option-grid ${errors.statueType ? 'custom-option-grid--error' : ''}`}>
                     {statueTypes.map(t => (
-                      <button key={t} className={`custom-option ${form.statueType === t ? 'custom-option--selected' : ''}`} onClick={() => update('statueType', t)}>{t}</button>
+                      <button type="button" key={t} className={`custom-option ${form.statueType === t ? 'custom-option--selected' : ''}`} onClick={() => update('statueType', t)} aria-pressed={form.statueType === t}>{t}</button>
                     ))}
                   </div>
+                  {errors.statueType && <p className="form-error" id="statue-type-error">{errors.statueType}</p>}
                 </div>
                 <div className="form-group">
                   <label className="form-label">Deity / Design Name</label>
@@ -84,7 +176,7 @@ export default function CustomOrders() {
                 </div>
                 <div className="custom-form-nav">
                   <div></div>
-                  <button className="btn btn-primary" onClick={() => setStep(2)} disabled={!form.statueType}>Next: Dimensions →</button>
+                  <button className="btn btn-primary" onClick={handleDesignNext}>Next: Dimensions →</button>
                 </div>
               </div>
             )}
@@ -95,19 +187,21 @@ export default function CustomOrders() {
                 <h3>Step 2: Specifications</h3>
                 <div className="form-group">
                   <label className="form-label">Wood Type *</label>
-                  <div className="custom-option-grid">
+                  <div className={`custom-option-grid ${errors.woodType ? 'custom-option-grid--error' : ''}`}>
                     {woodOptions.map(w => (
-                      <button key={w} className={`custom-option ${form.woodType === w ? 'custom-option--selected' : ''}`} onClick={() => update('woodType', w)}>{w}</button>
+                      <button type="button" key={w} className={`custom-option ${form.woodType === w ? 'custom-option--selected' : ''}`} onClick={() => update('woodType', w)} aria-pressed={form.woodType === w}>{w}</button>
                     ))}
                   </div>
+                  {errors.woodType && <p className="form-error" id="wood-type-error">{errors.woodType}</p>}
                 </div>
                 <div className="form-group">
                   <label className="form-label">Finish Preference *</label>
-                  <div className="custom-option-grid">
+                  <div className={`custom-option-grid ${errors.finish ? 'custom-option-grid--error' : ''}`}>
                     {finishOptions.map(f => (
-                      <button key={f} className={`custom-option ${form.finish === f ? 'custom-option--selected' : ''}`} onClick={() => update('finish', f)}>{f}</button>
+                      <button type="button" key={f} className={`custom-option ${form.finish === f ? 'custom-option--selected' : ''}`} onClick={() => update('finish', f)} aria-pressed={form.finish === f}>{f}</button>
                     ))}
                   </div>
+                  {errors.finish && <p className="form-error" id="finish-error">{errors.finish}</p>}
                 </div>
                 <div className="form-row">
                   <div className="form-group">
@@ -121,15 +215,16 @@ export default function CustomOrders() {
                 </div>
                 <div className="form-group">
                   <label className="form-label">Budget Range *</label>
-                  <div className="custom-option-grid">
+                  <div className={`custom-option-grid ${errors.budget ? 'custom-option-grid--error' : ''}`}>
                     {budgetRanges.map(b => (
-                      <button key={b} className={`custom-option ${form.budget === b ? 'custom-option--selected' : ''}`} onClick={() => update('budget', b)}>{b}</button>
+                      <button type="button" key={b} className={`custom-option ${form.budget === b ? 'custom-option--selected' : ''}`} onClick={() => update('budget', b)} aria-pressed={form.budget === b}>{b}</button>
                     ))}
                   </div>
+                  {errors.budget && <p className="form-error" id="budget-error">{errors.budget}</p>}
                 </div>
                 <div className="custom-form-nav">
                   <button className="btn btn-outline" onClick={() => setStep(1)}>← Back</button>
-                  <button className="btn btn-primary" onClick={() => setStep(3)} disabled={!form.woodType || !form.finish || !form.budget}>Next: Contact →</button>
+                  <button className="btn btn-primary" onClick={handleSpecificationsNext}>Next: Contact →</button>
                 </div>
               </div>
             )}
@@ -140,16 +235,44 @@ export default function CustomOrders() {
                 <h3>Step 3: Your Contact Details</h3>
                 <div className="form-group">
                   <label className="form-label">Your Name *</label>
-                  <input className="form-input" placeholder="Full name" value={form.name} onChange={e => update('name', e.target.value)} />
+                  <input
+                    className={`form-input ${errors.name ? 'form-input--error' : ''}`}
+                    placeholder="Full name"
+                    value={form.name}
+                    onChange={e => update('name', e.target.value)}
+                    aria-invalid={Boolean(errors.name)}
+                    aria-describedby={errors.name ? 'name-error' : undefined}
+                  />
+                  {errors.name && <p className="form-error" id="name-error">{errors.name}</p>}
                 </div>
                 <div className="form-row">
                   <div className="form-group">
                     <label className="form-label">Phone Number *</label>
-                    <input className="form-input" type="tel" placeholder="+91 ..." value={form.phone} onChange={e => update('phone', e.target.value)} />
+                    <input
+                      className={`form-input ${errors.phone ? 'form-input--error' : ''}`}
+                      type="tel"
+                      inputMode="numeric"
+                      maxLength={10}
+                      placeholder="10-digit mobile number"
+                      value={form.phone}
+                      onChange={e => update('phone', e.target.value)}
+                      aria-invalid={Boolean(errors.phone)}
+                      aria-describedby={errors.phone ? 'phone-error' : undefined}
+                    />
+                    {errors.phone && <p className="form-error" id="phone-error">{errors.phone}</p>}
                   </div>
                   <div className="form-group">
                     <label className="form-label">Email</label>
-                    <input className="form-input" type="email" placeholder="your@email.com" value={form.email} onChange={e => update('email', e.target.value)} />
+                    <input
+                      className={`form-input ${errors.email ? 'form-input--error' : ''}`}
+                      type="email"
+                      placeholder="your@email.com"
+                      value={form.email}
+                      onChange={e => update('email', e.target.value)}
+                      aria-invalid={Boolean(errors.email)}
+                      aria-describedby={errors.email ? 'email-error' : undefined}
+                    />
+                    {errors.email && <p className="form-error" id="email-error">{errors.email}</p>}
                   </div>
                 </div>
                 <div className="form-group">
@@ -172,7 +295,7 @@ export default function CustomOrders() {
 
                 <div className="custom-form-nav">
                   <button className="btn btn-outline" onClick={() => setStep(2)}>← Back</button>
-                  <button className="btn btn-whatsapp btn-lg" onClick={handleSubmit} disabled={!form.name || !form.phone}>
+                  <button className="btn btn-whatsapp btn-lg" onClick={handleSubmit}>
                     💬 Send via WhatsApp
                   </button>
                 </div>
