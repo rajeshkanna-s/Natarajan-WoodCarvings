@@ -1,12 +1,13 @@
 import { useCountUp } from '../hooks/useScrollReveal';
 import { testimonials } from '../data/testimonials';
+import { googleReviews } from '../data/googleReviews';
 import './Testimonials.css';
 
 const stats = [
   { value: 50000, suffix: '+', label: 'Statues Sold', icon: '🪵' },
   { value: 40, suffix: '+', label: 'Years Experience', icon: '🏛️' },
   { value: 50, suffix: '+', label: 'Countries Shipped', icon: '🌍' },
-  { value: 327, suffix: '', label: 'Instagram Posts', icon: '📸' },
+  { value: 5, suffix: '.0', label: 'Google Rating', icon: '⭐' },
 ];
 
 export default function Testimonials() {
@@ -55,6 +56,50 @@ export default function Testimonials() {
                 </div>
                 <span className="testimonial-card__product">📦 {t.product}</span>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Google Reviews */}
+      <section className="section google-reviews-section">
+        <div className="container">
+          <div className="section-header google-reviews-header">
+            <span className="google-reviews-badge">Google Reviews</span>
+            <h2>5-Star Words from Our Customers</h2>
+            <p className="section-subtitle">
+              Real customer feedback on craftsmanship, packing, delivery, and custom wooden statue work.
+            </p>
+          </div>
+
+          <div className="google-reviews-summary">
+            <div>
+              <span className="google-reviews-summary__score">5.0</span>
+              <div className="google-review-stars" aria-label="5 out of 5 stars">
+                {Array.from({ length: 5 }).map((_, i) => <span key={i}>★</span>)}
+              </div>
+            </div>
+            <p>Consistently praised for detailed carving, responsive communication, secure packing, and timely delivery.</p>
+          </div>
+
+          <div className="google-reviews-grid">
+            {googleReviews.map((review) => (
+              <article key={`${review.name}-${review.time}`} className="google-review-card">
+                <div className="google-review-card__top">
+                  <div className="google-review-card__avatar">{review.name.charAt(0)}</div>
+                  <div>
+                    <h3>{review.name}</h3>
+                    <p>{review.meta}</p>
+                  </div>
+                </div>
+                <div className="google-review-card__rating">
+                  <div className="google-review-stars" aria-label="5 out of 5 stars">
+                    {Array.from({ length: 5 }).map((_, i) => <span key={i}>★</span>)}
+                  </div>
+                  <span>{review.time}</span>
+                </div>
+                <p className="google-review-card__text">"{review.text}"</p>
+              </article>
             ))}
           </div>
         </div>
