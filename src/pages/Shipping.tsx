@@ -1,10 +1,10 @@
 import './Shipping.css';
 
 const couriers = [
-  { name: 'DHL Express', desc: 'International express delivery', time: '5–7 days', icon: '📦' },
-  { name: 'FedEx', desc: 'Worldwide shipping', time: '5–10 days', icon: '🚀' },
-  { name: 'Blue Dart', desc: 'Domestic India delivery', time: '3–5 days', icon: '🏠' },
-  { name: 'India Post', desc: 'Economy domestic option', time: '7–14 days', icon: '📮' },
+  { name: 'Priority International', desc: 'Fast overseas delivery option', time: '5–7 days', icon: '📦' },
+  { name: 'Worldwide Courier', desc: 'Reliable global shipping', time: '5–10 days', icon: '🚀' },
+  { name: 'Domestic Express', desc: 'Fast delivery within India', time: '3–5 days', icon: '🏠' },
+  { name: 'Economy Delivery', desc: 'Budget-friendly domestic option', time: '7–14 days', icon: '📮' },
 ];
 
 const packingSteps = [
@@ -27,12 +27,12 @@ export default function Shipping() {
         </div>
       </section>
 
-      {/* Couriers */}
+      {/* Shipping Options */}
       <section className="section">
         <div className="container">
           <div className="section-header">
-            <h2>Our Shipping Partners</h2>
-            <p className="section-subtitle">Trusted courier services for safe delivery across India and worldwide</p>
+            <h2>Shipping Options</h2>
+            <p className="section-subtitle">Flexible delivery choices for safe shipping across India and worldwide</p>
           </div>
           <div className="shipping-courier-grid">
             {couriers.map((c, i) => (
@@ -80,14 +80,14 @@ export default function Shipping() {
               <ul>
                 <li>Free shipping on orders above ₹25,000</li>
                 <li>Delivery within 3–7 business days</li>
-                <li>Cash on Delivery available for select pin codes</li>
+                <li>Secure advance payment confirmation before dispatch</li>
                 <li>Real-time tracking provided</li>
               </ul>
             </div>
             <div className="shipping-info-card">
               <h4>🌏 International</h4>
               <ul>
-                <li>Shipped via DHL / FedEx / EMS</li>
+                <li>Shipped through trusted international courier services</li>
                 <li>Delivery within 5–14 business days</li>
                 <li>Customs documentation handled by us</li>
                 <li>Insurance available for high-value orders</li>
