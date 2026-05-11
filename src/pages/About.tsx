@@ -6,7 +6,7 @@ const timeline = [
   { year: '2000s', title: 'National Recognition', desc: 'Award-winning craftsmanship gains recognition across India. Export operations begin to serve international collectors.' },
   { year: '2018', title: 'Poompuhar Award', desc: 'Honored with the prestigious Poompuhar Award by the Tamil Nadu Government for excellence in traditional wood carving.' },
   { year: '2021', title: 'GI Tag Certification', desc: 'Kallakurichi wood carving receives Geographical Indication (GI) tag, recognizing its unique heritage and authenticity.' },
-  { year: 'Today', title: 'Global Presence', desc: 'Exporting to 50+ countries, with 6,400+ Instagram followers and 1,000+ satisfied customers worldwide.' },
+  { year: 'Today', title: 'Global Presence', desc: 'Exporting to 50+ countries, with 500+ statue varieties and 1,000+ satisfied customers worldwide.' },
 ];
 
 export default function About() {

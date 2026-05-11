@@ -1,12 +1,55 @@
 import { Link } from 'react-router-dom';
 import './Craftsmanship.css';
 
-const steps = [
-  { num: '01', title: 'Wood Selection', icon: '🌳', desc: 'Premium seasoned wood — Teak, Rosewood, Vaagai, or Sandalwood — is carefully selected based on grain, density, and the intended sculpture. Each wood type brings unique character.' },
-  { num: '02', title: 'Paper Design', icon: '📐', desc: 'Master artisans sketch the design on paper, defining proportions according to Shilpa Shastra (ancient Indian sculpture guidelines). Every deity follows sacred ratios.' },
-  { num: '03', title: 'Ink Transfer', icon: '✒️', desc: 'The finalized design is traced onto the wood block using traditional ink transfer techniques, creating the blueprint for the carving process.' },
-  { num: '04', title: 'Hand Carving', icon: '🔨', desc: 'Using chisels, gouges, and mallets, artisans bring the wood to life. This stage takes days to weeks depending on complexity — every detail is carved by hand.' },
-  { num: '05', title: 'Buffing & Finishing', icon: '✨', desc: 'Final polishing with sandpaper and natural oils reveals the wood\'s beauty. Painted pieces receive multiple coats of natural pigments and gold leaf accents.' },
+const craftSteps = [
+  {
+    step: 1,
+    title: 'Selecting Premium Timber',
+    desc: 'Every masterpiece begins with the finest wood. Our experts handpick seasoned Teak, Rosewood, and Vaagai logs — inspecting grain, density, and natural character to ensure each block is worthy of becoming a divine sculpture.',
+    image: '/images/process/step-1-wood-selection.png',
+  },
+  {
+    step: 2,
+    title: 'Blueprint & Design',
+    desc: 'Master artisans translate sacred visions into detailed hand-drawn sketches on aged parchment. Every proportion, mudra, and ornament is meticulously planned using traditional iconographic measurements passed down through generations.',
+    image: '/images/process/step-2-design-sketch.png',
+  },
+  {
+    step: 3,
+    title: 'Rough Carving & Shaping',
+    desc: 'Using traditional chisels and mallets, the raw timber block is carefully transformed into its foundational form. This stage demands both strength and vision as the sculptor reveals the deity hidden within the wood.',
+    image: '/images/process/step-3-rough-shaping.png',
+  },
+  {
+    step: 4,
+    title: 'Intricate Detail Carving',
+    desc: 'Fine chisels and gouges bring out the ornate details — delicate jewelry, flowing garments, floral motifs, and sacred symbols. This painstaking stage can take weeks of focused, meditative craftsmanship.',
+    image: '/images/process/step-4-detail-carving.png',
+  },
+  {
+    step: 5,
+    title: 'Sculpting Divine Expressions',
+    desc: 'The most sacred step — breathing life into the deity\'s face. Using precision micro-tools, the artisan sculpts serene expressions, gentle smiles, and compassionate eyes that radiate spiritual grace.',
+    image: '/images/process/step-5-face-sculpting.png',
+  },
+  {
+    step: 6,
+    title: 'Sanding & Smoothing',
+    desc: 'Multiple rounds of hand-sanding with progressively finer grits create a flawless, silk-smooth surface. Every curve is refined, every edge perfected — preparing the sculpture for its final transformation.',
+    image: '/images/process/step-6-sanding-finishing.png',
+  },
+  {
+    step: 7,
+    title: 'Natural Coloring & Polish',
+    desc: 'Traditional wood stains, natural oils, and lacquer are carefully applied by hand. Rich brown, golden, and rosewood tones emerge, enhancing the natural grain while providing lasting protection and a luxurious sheen.',
+    image: '/images/process/step-7-natural-coloring-polish.png',
+  },
+  {
+    step: 8,
+    title: 'Final Showcase & Delivery',
+    desc: 'Every completed piece undergoes rigorous quality inspection before being proudly displayed. From our workshop in Kallakurichi to your sacred space — each sculpture is custom-packed and shipped worldwide with care.',
+    image: '/images/process/step-8-final-showcase-delivery.png',
+  },
 ];
 
 const woodTypes = [
@@ -24,29 +67,45 @@ export default function Craftsmanship() {
           <span className="badge badge-gold">🔨 The Process</span>
           <h1>Our Craftsmanship</h1>
           <p className="section-subtitle">
-            From raw timber to divine art — discover the meticulous 5-step journey that 
+            From raw timber to divine art — discover the meticulous journey that 
             transforms a block of wood into a masterpiece.
           </p>
         </div>
       </section>
 
       {/* Process Steps */}
-      <section className="section">
+      <section className="section craftsmanship-section" id="craftsmanship-section">
         <div className="container">
-          <div className="craft-steps">
-            {steps.map((step, i) => (
-              <div key={i} className="craft-step">
-                <div className="craft-step__visual">
-                  <div className="craft-step__num">{step.num}</div>
-                  <div className="craft-step__icon">{step.icon}</div>
-                  {i < steps.length - 1 && <div className="craft-step__line"></div>}
+          <div className="section-header">
+            <h2>From Raw Timber to Divine Sculpture</h2>
+            <p className="section-subtitle">
+              A journey of patience, devotion, and mastery — each statue passes through eight
+              stages of meticulous handcrafting by our artisan lineage.
+            </p>
+          </div>
+
+          <div className="process-timeline" id="process-timeline">
+            <div className="process-timeline__line" aria-hidden="true"></div>
+
+            {craftSteps.map((step, index) => (
+              <div
+                className={`process-step ${index % 2 === 0 ? 'process-step--left' : 'process-step--right'}`}
+                key={step.step}
+                id={`process-step-${step.step}`}
+              >
+                <div className="process-step__node">
+                  <span className="process-step__number">{step.step}</span>
                 </div>
-                <div className="craft-step__content">
-                  <h3>{step.title}</h3>
-                  <p>{step.desc}</p>
-                </div>
-                <div className="craft-step__img-wrap">
-                  <img src={`/images/gallery/product-${i + 15}.jpg`} alt={step.title} loading="lazy" />
+
+                <div className="process-step__card">
+                  <div className="process-step__img-wrap">
+                    <img src={step.image} alt={step.title} loading="lazy" />
+                  </div>
+                  <div className="process-step__content">
+                    <span className="process-step__label">Step {step.step}</span>
+                    <h3 className="process-step__title">{step.title}</h3>
+                    <p className="process-step__desc">{step.desc}</p>
+                  </div>
                 </div>
               </div>
             ))}

@@ -91,7 +91,7 @@ export default function Testimonials() {
       <section className="section testimonials-ig-section">
         <div className="container" style={{ textAlign: 'center' }}>
           <h2>Follow Our Journey on Instagram</h2>
-          <p className="section-subtitle" style={{ marginBottom: '2rem' }}>327 posts · 6,400+ followers · Daily updates from our workshop</p>
+          <p className="section-subtitle" style={{ marginBottom: '2rem' }}>327 posts · New carvings and workshop updates every week</p>
           <a href="https://www.instagram.com/natarajan_woodcarvings/" className="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
             📸 Follow @natarajan_woodcarvings
           </a>

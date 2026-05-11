@@ -5,8 +5,8 @@ import './Home.css';
 
 const stats = [
   { value: 40, suffix: '+', label: 'Years of Heritage', icon: '🏛️' },
-  { value: 5000, suffix: '+', label: 'Statues Crafted', icon: '🪵' },
-  { value: 6400, suffix: '+', label: 'Instagram Followers', icon: '📸' },
+  { value: 10000, suffix: '+', label: 'Statues Crafted', icon: '🪵' },
+  { value: 500, suffix: '+', label: 'Statue Varieties', icon: '🗿' },
   { value: 50, suffix: '+', label: 'Countries Shipped', icon: '🌍' },
 ];
 
