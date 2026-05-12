@@ -321,7 +321,7 @@
 
 .craft-woods-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-6);
 }
 
@@ -412,7 +412,7 @@
     direction: ltr !important;
   }
   .craft-step__img-wrap { display: none; }
-  .craft-woods-grid { grid-template-columns: repeat(2, 1fr); }
+  .craft-woods-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   .process-timeline__line {
     left: 22px;

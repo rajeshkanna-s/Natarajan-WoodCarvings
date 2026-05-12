@@ -1,10 +1,44 @@
 import { useState } from 'react';
 import './CustomOrders.css';
 
-const statueTypes = ['Deity Statue', 'Wall Mount Panel', 'Temple Arch', 'Pooja Mandap', 'Decorative Pillar', 'Modern Art Piece', 'Custom Design'];
-const woodOptions = ['Teak Wood', 'Rosewood', 'Vaagai Wood', 'Sandalwood', 'Not Sure — Need Guidance'];
-const finishOptions = ['Natural Polish', 'Painted (Traditional)', 'Gold Leaf Accent', 'Antique Finish', 'Raw/Unfinished'];
-const budgetRanges = ['₹5,000 – ₹15,000', '₹15,000 – ₹50,000', '₹50,000 – ₹1,00,000', '₹1,00,000 – ₹5,00,000', '₹5,00,000+', 'Need Quote First'];
+const statueTypes = [
+  'Deity Statue',
+  'Wall Mount Panel',
+  'Temple Arch',
+  'Pooja Mandap',
+  'Decorative Pillar',
+  'Modern Art Piece',
+  'Custom Design',
+];
+
+const woodOptions = [
+  'Rain Tree Wood (Country Wood)',
+  'Burma Teak',
+  'Nelambur Teak',
+  'African Teak',
+  'Temple Plant Wood',
+  'Fig Wood',
+  'Indian Kino Tree Wood',
+  'Mahogany',
+  'Not Sure - Need Guidance',
+];
+
+const finishOptions = [
+  'Natural Polish',
+  'Raw / Unfinished',
+  'Antique Brown',
+  'Gold Accent',
+  'Traditional Multi Color',
+];
+
+const budgetRanges = [
+  'INR 5,000 - INR 15,000',
+  'INR 15,000 - INR 50,000',
+  'INR 50,000 - INR 1,00,000',
+  'INR 1,00,000 - INR 5,00,000',
+  'INR 5,00,000+',
+  'Need Quote First',
+];
 
 type FormState = {
   statueType: string;
@@ -105,21 +139,21 @@ export default function CustomOrders() {
     if (validateSpecificationsStep()) setStep(3);
   };
 
-  const generateWhatsAppMsg = () => {
-    return `Hello Natarajan WoodCarvings! I'd like to place a custom order:\n\n` +
-      `📋 *Order Details*\n` +
-      `• Type: ${form.statueType}\n` +
-      `• Deity/Design: ${form.deityName || 'N/A'}\n` +
-      `• Wood: ${form.woodType}\n` +
-      `• Finish: ${form.finish}\n` +
-      `• Size: ${form.height} × ${form.width}\n` +
-      `• Budget: ${form.budget}\n\n` +
-      `👤 *Contact*\n` +
-      `• Name: ${form.name}\n` +
-      `• Phone: ${form.phone}\n` +
-      `• Email: ${form.email}\n\n` +
-      `📝 Notes: ${form.notes || 'None'}`;
-  };
+  const generateWhatsAppMsg = () => (
+    `Hello Natarajan WoodCarvings! I'd like to place a custom order:\n\n` +
+    `Order Details\n` +
+    `- Type: ${form.statueType}\n` +
+    `- Deity/Design: ${form.deityName || 'N/A'}\n` +
+    `- Wood: ${form.woodType}\n` +
+    `- Finish: ${form.finish}\n` +
+    `- Size: ${form.height || 'N/A'} x ${form.width || 'N/A'}\n` +
+    `- Budget: ${form.budget}\n\n` +
+    `Contact\n` +
+    `- Name: ${form.name}\n` +
+    `- Phone: ${form.phone}\n` +
+    `- Email: ${form.email || 'N/A'}\n\n` +
+    `Notes: ${form.notes || 'None'}`
+  );
 
   const handleSubmit = () => {
     if (!validateContactStep()) return;
@@ -132,11 +166,11 @@ export default function CustomOrders() {
     <div className="custom-page" id="custom-orders-page">
       <section className="custom-hero">
         <div className="container">
-          <span className="badge badge-gold">✨ Bespoke Creations</span>
+          <span className="badge badge-gold">Bespoke Creations</span>
           <h1>Custom Orders</h1>
           <p className="section-subtitle">
-            Tell us your vision — our master artisans will bring it to life in wood.
-            Fill the form below and we'll connect on WhatsApp for details.
+            Tell us your vision. Our artisans will bring it to life in wood.
+            Fill the form below and we will connect on WhatsApp for details.
           </p>
         </div>
       </section>
@@ -144,92 +178,141 @@ export default function CustomOrders() {
       <section className="section">
         <div className="container">
           <div className="custom-form-wrap">
-            {/* Step Indicator */}
             <div className="custom-steps-indicator">
               {[1, 2, 3].map(s => (
                 <div key={s} className={`custom-step-dot ${step >= s ? 'custom-step-dot--active' : ''}`}>
                   <span>{s}</span>
-                  <small>{s === 1 ? 'Design' : s === 2 ? 'Dimensions' : 'Contact'}</small>
+                  <small>{s === 1 ? 'Design' : s === 2 ? 'Details' : 'Contact'}</small>
                 </div>
               ))}
               <div className="custom-steps-line">
-                <div className="custom-steps-line-fill" style={{ width: `${((step - 1) / 2) * 100}%` }}></div>
+                <div className="custom-steps-line-fill" style={{ width: `${((step - 1) / 2) * 100}%` }} />
               </div>
             </div>
 
-            {/* Step 1: Design */}
             {step === 1 && (
               <div className="custom-form-step" id="custom-step-1">
                 <h3>Step 1: What would you like?</h3>
                 <div className="form-group">
                   <label className="form-label">Statue Type *</label>
                   <div className={`custom-option-grid ${errors.statueType ? 'custom-option-grid--error' : ''}`}>
-                    {statueTypes.map(t => (
-                      <button type="button" key={t} className={`custom-option ${form.statueType === t ? 'custom-option--selected' : ''}`} onClick={() => update('statueType', t)} aria-pressed={form.statueType === t}>{t}</button>
+                    {statueTypes.map(type => (
+                      <button
+                        type="button"
+                        key={type}
+                        className={`custom-option ${form.statueType === type ? 'custom-option--selected' : ''}`}
+                        onClick={() => update('statueType', type)}
+                        aria-pressed={form.statueType === type}
+                      >
+                        {type}
+                      </button>
                     ))}
                   </div>
                   {errors.statueType && <p className="form-error" id="statue-type-error">{errors.statueType}</p>}
                 </div>
+
                 <div className="form-group">
                   <label className="form-label">Deity / Design Name</label>
-                  <input className="form-input" placeholder="e.g., Lord Ganesha, Nataraja, Custom peacock..." value={form.deityName} onChange={e => update('deityName', e.target.value)} />
+                  <input
+                    className="form-input"
+                    placeholder="e.g., Lord Ganesha, Nataraja, custom peacock"
+                    value={form.deityName}
+                    onChange={e => update('deityName', e.target.value)}
+                  />
                 </div>
+
                 <div className="custom-form-nav">
-                  <div></div>
-                  <button className="btn btn-primary" onClick={handleDesignNext}>Next: Dimensions →</button>
+                  <div />
+                  <button className="btn btn-primary" onClick={handleDesignNext}>Next: Details</button>
                 </div>
               </div>
             )}
 
-            {/* Step 2: Dimensions */}
             {step === 2 && (
               <div className="custom-form-step" id="custom-step-2">
                 <h3>Step 2: Specifications</h3>
                 <div className="form-group">
                   <label className="form-label">Wood Type *</label>
                   <div className={`custom-option-grid ${errors.woodType ? 'custom-option-grid--error' : ''}`}>
-                    {woodOptions.map(w => (
-                      <button type="button" key={w} className={`custom-option ${form.woodType === w ? 'custom-option--selected' : ''}`} onClick={() => update('woodType', w)} aria-pressed={form.woodType === w}>{w}</button>
+                    {woodOptions.map(wood => (
+                      <button
+                        type="button"
+                        key={wood}
+                        className={`custom-option ${form.woodType === wood ? 'custom-option--selected' : ''}`}
+                        onClick={() => update('woodType', wood)}
+                        aria-pressed={form.woodType === wood}
+                      >
+                        {wood}
+                      </button>
                     ))}
                   </div>
                   {errors.woodType && <p className="form-error" id="wood-type-error">{errors.woodType}</p>}
                 </div>
+
                 <div className="form-group">
                   <label className="form-label">Finish Preference *</label>
                   <div className={`custom-option-grid ${errors.finish ? 'custom-option-grid--error' : ''}`}>
-                    {finishOptions.map(f => (
-                      <button type="button" key={f} className={`custom-option ${form.finish === f ? 'custom-option--selected' : ''}`} onClick={() => update('finish', f)} aria-pressed={form.finish === f}>{f}</button>
+                    {finishOptions.map(finish => (
+                      <button
+                        type="button"
+                        key={finish}
+                        className={`custom-option ${form.finish === finish ? 'custom-option--selected' : ''}`}
+                        onClick={() => update('finish', finish)}
+                        aria-pressed={form.finish === finish}
+                      >
+                        {finish}
+                      </button>
                     ))}
                   </div>
                   {errors.finish && <p className="form-error" id="finish-error">{errors.finish}</p>}
                 </div>
+
                 <div className="form-row">
                   <div className="form-group">
                     <label className="form-label">Height (approx)</label>
-                    <input className="form-input" placeholder="e.g., 2 feet" value={form.height} onChange={e => update('height', e.target.value)} />
+                    <input
+                      className="form-input"
+                      placeholder="e.g., 2 feet"
+                      value={form.height}
+                      onChange={e => update('height', e.target.value)}
+                    />
                   </div>
                   <div className="form-group">
                     <label className="form-label">Width (approx)</label>
-                    <input className="form-input" placeholder="e.g., 1.5 feet" value={form.width} onChange={e => update('width', e.target.value)} />
+                    <input
+                      className="form-input"
+                      placeholder="e.g., 1.5 feet"
+                      value={form.width}
+                      onChange={e => update('width', e.target.value)}
+                    />
                   </div>
                 </div>
+
                 <div className="form-group">
                   <label className="form-label">Budget Range *</label>
                   <div className={`custom-option-grid ${errors.budget ? 'custom-option-grid--error' : ''}`}>
-                    {budgetRanges.map(b => (
-                      <button type="button" key={b} className={`custom-option ${form.budget === b ? 'custom-option--selected' : ''}`} onClick={() => update('budget', b)} aria-pressed={form.budget === b}>{b}</button>
+                    {budgetRanges.map(budget => (
+                      <button
+                        type="button"
+                        key={budget}
+                        className={`custom-option ${form.budget === budget ? 'custom-option--selected' : ''}`}
+                        onClick={() => update('budget', budget)}
+                        aria-pressed={form.budget === budget}
+                      >
+                        {budget}
+                      </button>
                     ))}
                   </div>
                   {errors.budget && <p className="form-error" id="budget-error">{errors.budget}</p>}
                 </div>
+
                 <div className="custom-form-nav">
-                  <button className="btn btn-outline" onClick={() => setStep(1)}>← Back</button>
-                  <button className="btn btn-primary" onClick={handleSpecificationsNext}>Next: Contact →</button>
+                  <button className="btn btn-outline" onClick={() => setStep(1)}>Back</button>
+                  <button className="btn btn-primary" onClick={handleSpecificationsNext}>Next: Contact</button>
                 </div>
               </div>
             )}
 
-            {/* Step 3: Contact */}
             {step === 3 && (
               <div className="custom-form-step" id="custom-step-3">
                 <h3>Step 3: Your Contact Details</h3>
@@ -245,6 +328,7 @@ export default function CustomOrders() {
                   />
                   {errors.name && <p className="form-error" id="name-error">{errors.name}</p>}
                 </div>
+
                 <div className="form-row">
                   <div className="form-group">
                     <label className="form-label">Phone Number *</label>
@@ -261,6 +345,7 @@ export default function CustomOrders() {
                     />
                     {errors.phone && <p className="form-error" id="phone-error">{errors.phone}</p>}
                   </div>
+
                   <div className="form-group">
                     <label className="form-label">Email</label>
                     <input
@@ -275,28 +360,33 @@ export default function CustomOrders() {
                     {errors.email && <p className="form-error" id="email-error">{errors.email}</p>}
                   </div>
                 </div>
+
                 <div className="form-group">
                   <label className="form-label">Additional Notes</label>
-                  <textarea className="form-textarea" placeholder="Any specific requirements, reference images description, etc." value={form.notes} onChange={e => update('notes', e.target.value)} />
+                  <textarea
+                    className="form-textarea"
+                    placeholder="Any specific requirements, reference image details, carving size, finish or delivery location"
+                    value={form.notes}
+                    onChange={e => update('notes', e.target.value)}
+                  />
                 </div>
 
-                {/* Summary */}
                 <div className="custom-summary">
-                  <h4>📋 Order Summary</h4>
+                  <h4>Order Summary</h4>
                   <div className="custom-summary-grid">
                     <span>Type:</span><strong>{form.statueType}</strong>
-                    <span>Design:</span><strong>{form.deityName || '—'}</strong>
+                    <span>Design:</span><strong>{form.deityName || '-'}</strong>
                     <span>Wood:</span><strong>{form.woodType}</strong>
                     <span>Finish:</span><strong>{form.finish}</strong>
-                    <span>Size:</span><strong>{form.height || '—'} × {form.width || '—'}</strong>
+                    <span>Size:</span><strong>{form.height || '-'} x {form.width || '-'}</strong>
                     <span>Budget:</span><strong>{form.budget}</strong>
                   </div>
                 </div>
 
                 <div className="custom-form-nav">
-                  <button className="btn btn-outline" onClick={() => setStep(2)}>← Back</button>
+                  <button className="btn btn-outline" onClick={() => setStep(2)}>Back</button>
                   <button className="btn btn-whatsapp btn-lg" onClick={handleSubmit}>
-                    💬 Send via WhatsApp
+                    Send via WhatsApp
                   </button>
                 </div>
               </div>
@@ -304,6 +394,7 @@ export default function CustomOrders() {
           </div>
         </div>
       </section>
+
     </div>
   );
 }

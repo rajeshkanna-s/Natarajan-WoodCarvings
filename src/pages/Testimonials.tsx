@@ -27,7 +27,7 @@ export default function Testimonials() {
       {/* Stats */}
       <section className="testimonials-stats">
         <div className="container">
-          <div className="stats-grid">
+          <div className="testimonials-stats-grid">
             {stats.map((stat, i) => (
               <TestimonialStat key={i} {...stat} />
             ))}
@@ -149,10 +149,12 @@ export default function Testimonials() {
 function TestimonialStat({ value, suffix, label, icon }: { value: number; suffix: string; label: string; icon: string }) {
   const { count, ref } = useCountUp(value, 2000);
   return (
-    <div className="stat-card" ref={ref}>
-      <span className="stat-card__icon">{icon}</span>
-      <span className="stat-card__value">{count.toLocaleString()}{suffix}</span>
-      <span className="stat-card__label">{label}</span>
+    <div className="testimonial-stat-card" ref={ref}>
+      <span className="testimonial-stat-card__icon">{icon}</span>
+      <span className="testimonial-stat-card__content">
+        <span className="testimonial-stat-card__value">{count.toLocaleString()}{suffix}</span>
+        <span className="testimonial-stat-card__label">{label}</span>
+      </span>
     </div>
   );
 }

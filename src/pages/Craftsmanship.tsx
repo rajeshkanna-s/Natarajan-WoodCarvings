@@ -5,7 +5,7 @@ const craftSteps = [
   {
     step: 1,
     title: 'Selecting Premium Timber',
-    desc: 'Every masterpiece begins with the finest wood. Our experts handpick seasoned Teak, Rosewood, and Vaagai logs — inspecting grain, density, and natural character to ensure each block is worthy of becoming a divine sculpture.',
+    desc: 'Every masterpiece begins with the right wood. Our experts handpick seasoned Rain Tree, Teak, Temple Plant, Fig, Indian Kino Tree, and Mahogany logs — inspecting grain, density, and natural character to ensure each block is worthy of becoming a divine sculpture.',
     image: '/images/process/step-1-wood-selection.png',
   },
   {
@@ -53,10 +53,12 @@ const craftSteps = [
 ];
 
 const woodTypes = [
-  { name: 'Teak Wood', desc: 'Durable, termite-resistant. Ideal for large statues and outdoor pieces.', color: '#8B6914' },
-  { name: 'Rosewood', desc: 'Rich dark grain, premium finish. Perfect for deity statues and heirloom pieces.', color: '#4A1A2E' },
-  { name: 'Vaagai Wood', desc: 'Lightweight, fine-grained. Traditional choice for intricate temple carvings.', color: '#C4A35A' },
-  { name: 'Sandalwood', desc: 'Fragrant, sacred. Used for small deity figurines and special commissions.', color: '#D2B48C' },
+  { name: 'Rain Tree Wood', desc: 'Also known as Country Wood. A practical choice for traditional carving work.', color: '#9B6A37' },
+  { name: 'Teak Wood Options', desc: 'Available in Burma Teak, Nelambur Teak, and African Teak based on project needs.', color: '#8B6914' },
+  { name: 'Temple Plant Wood', desc: 'Selected for devotional and temple-style carvings with a traditional character.', color: '#B48445' },
+  { name: 'Fig Wood', desc: 'Suitable for detailed carving where a softer working grain is preferred.', color: '#C8A66A' },
+  { name: 'Indian Kino Tree Wood', desc: 'Strong native hardwood with warm tones for durable handcrafted pieces.', color: '#7B3F24' },
+  { name: 'Mahogany', desc: 'Stable, attractive hardwood with a refined finish for premium wood carvings.', color: '#6F2E1C' },
 ];
 
 export default function Craftsmanship() {
