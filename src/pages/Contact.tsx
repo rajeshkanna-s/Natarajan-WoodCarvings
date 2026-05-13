@@ -52,7 +52,7 @@ export default function Contact() {
                 <span className="contact-info-icon">✉️</span>
                 <div>
                   <h4>Email</h4>
-                  <p><a href="mailto:info@natarajanwoodcarvings.com">info@natarajanwoodcarvings.com</a></p>
+                  <p><a href="mailto:natarajanwoodcarvings@gmail.com">natarajanwoodcarvings@gmail.com</a></p>
                 </div>
               </div>
 
@@ -60,7 +60,7 @@ export default function Contact() {
                 <span className="contact-info-icon">⏰</span>
                 <div>
                   <h4>Business Hours</h4>
-                  <p>Monday – Saturday: 9:00 AM – 7:00 PM<br />Sunday: Closed</p>
+                  <p>Mon – Sun: 7:00 AM – 9:00 PM</p>
                 </div>
               </div>
 
@@ -75,7 +75,6 @@ export default function Contact() {
 
               <div className="contact-social">
                 <a href="https://www.instagram.com/natarajan_woodcarvings/" target="_blank" rel="noopener noreferrer" className="contact-social-link">📸 Instagram</a>
-                <a href="https://www.facebook.com/natarajanwoodcarvings" target="_blank" rel="noopener noreferrer" className="contact-social-link">👍 Facebook</a>
               </div>
             </div>
 

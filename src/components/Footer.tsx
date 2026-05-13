@@ -52,8 +52,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>📞 <a href="tel:+919092342219">+91 90923 42219</a></li>
-              <li>✉️ <a href="mailto:info@natarajanwoodcarvings.com">info@natarajanwoodcarvings.com</a></li>
-              <li>⏰ Mon – Sat: 9:00 AM – 7:00 PM</li>
+              <li>✉️ <a href="mailto:natarajanwoodcarvings@gmail.com">natarajanwoodcarvings@gmail.com</a></li>
+              <li>⏰ Mon – Sun: 7:00 AM – 9:00 PM</li>
             </ul>
             <div className="footer__social">
               {/* Instagram SVG icon */}

@@ -31,15 +31,6 @@ const finishOptions = [
   'Traditional Multi Color',
 ];
 
-const budgetRanges = [
-  'INR 5,000 - INR 15,000',
-  'INR 15,000 - INR 50,000',
-  'INR 50,000 - INR 1,00,000',
-  'INR 1,00,000 - INR 5,00,000',
-  'INR 5,00,000+',
-  'Need Quote First',
-];
-
 type FormState = {
   statueType: string;
   deityName: string;
@@ -47,7 +38,6 @@ type FormState = {
   finish: string;
   height: string;
   width: string;
-  budget: string;
   name: string;
   phone: string;
   email: string;
@@ -64,7 +54,6 @@ const initialForm: FormState = {
   finish: '',
   height: '',
   width: '',
-  budget: '',
   name: '',
   phone: '',
   email: '',
@@ -104,7 +93,6 @@ export default function CustomOrders() {
   const validateSpecificationsStep = () => applyErrors({
     ...(form.woodType ? {} : { woodType: mandatoryMessage }),
     ...(form.finish ? {} : { finish: mandatoryMessage }),
-    ...(form.budget ? {} : { budget: mandatoryMessage }),
   });
 
   const validateContactStep = () => {
@@ -147,7 +135,6 @@ export default function CustomOrders() {
     `- Wood: ${form.woodType}\n` +
     `- Finish: ${form.finish}\n` +
     `- Size: ${form.height || 'N/A'} x ${form.width || 'N/A'}\n` +
-    `- Budget: ${form.budget}\n\n` +
     `Contact\n` +
     `- Name: ${form.name}\n` +
     `- Phone: ${form.phone}\n` +
@@ -288,24 +275,6 @@ export default function CustomOrders() {
                   </div>
                 </div>
 
-                <div className="form-group">
-                  <label className="form-label">Budget Range *</label>
-                  <div className={`custom-option-grid ${errors.budget ? 'custom-option-grid--error' : ''}`}>
-                    {budgetRanges.map(budget => (
-                      <button
-                        type="button"
-                        key={budget}
-                        className={`custom-option ${form.budget === budget ? 'custom-option--selected' : ''}`}
-                        onClick={() => update('budget', budget)}
-                        aria-pressed={form.budget === budget}
-                      >
-                        {budget}
-                      </button>
-                    ))}
-                  </div>
-                  {errors.budget && <p className="form-error" id="budget-error">{errors.budget}</p>}
-                </div>
-
                 <div className="custom-form-nav">
                   <button className="btn btn-outline" onClick={() => setStep(1)}>Back</button>
                   <button className="btn btn-primary" onClick={handleSpecificationsNext}>Next: Contact</button>
@@ -379,7 +348,6 @@ export default function CustomOrders() {
                     <span>Wood:</span><strong>{form.woodType}</strong>
                     <span>Finish:</span><strong>{form.finish}</strong>
                     <span>Size:</span><strong>{form.height || '-'} x {form.width || '-'}</strong>
-                    <span>Budget:</span><strong>{form.budget}</strong>
                   </div>
                 </div>
 

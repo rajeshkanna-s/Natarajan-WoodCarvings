@@ -98,10 +98,12 @@
 }
 
 .hero__scroll-cta {
-  position: absolute;
-  bottom: var(--space-10);
-  left: 50%;
-  transform: translateX(-50%);
+  margin-top: var(--space-8);
+  width: max-content;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
   text-align: center;
   color: rgba(255, 255, 255, 0.5);
   font-size: var(--text-sm);
@@ -111,7 +113,14 @@
 
 .hero__scroll-arrow {
   font-size: var(--text-2xl);
-  animation: bounce 2s infinite;
+  line-height: 1;
+  animation: heroArrowBounce 2s infinite;
+}
+
+@keyframes heroArrowBounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(8px); }
+  60% { transform: translateY(4px); }
 }
 
 /* Floating images */
@@ -431,6 +440,10 @@
 
   .hero__cta .btn {
     width: 100%;
+  }
+
+  .hero__scroll-cta {
+    margin-top: var(--space-6);
   }
 
   .heritage-img-stack {
